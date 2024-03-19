@@ -26,7 +26,14 @@ jobs:
           dst_repo_name: Channels
           dst_branch: master
           src_branch: master
-
+    
+      - name: replaceString
+        uses: richardrigutins/replace-in-files@v2
+        with:
+          files: './tsImplayerCopied.m3u'
+          search-text: '|Content-Type=application/octet-stream|R{SSM}|'
+          replacement-text: ' '
+          
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
@@ -35,14 +42,14 @@ jobs:
           include: "tsImplayerCopied.m3u"
           regex: false
   
-    replaceString:
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-      - name: replace
-        uses: richardrigutins/replace-in-files@v2
-        with:
-          files: './tsImplayerCopied.m3u'
-          search-text: '|Content-Type=application/octet-stream|R{SSM}|'
-          replacement-text: ' '
+    # replaceString:
+    #   needs: build
+    #   runs-on: ubuntu-latest
+    #   steps:
+    #   - name: replace
+    #     uses: richardrigutins/replace-in-files@v2
+    #     with:
+    #       files: './tsImplayerCopied.m3u'
+    #       search-text: '|Content-Type=application/octet-stream|R{SSM}|'
+    #       replacement-text: ' '
     
