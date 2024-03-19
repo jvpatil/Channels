@@ -32,6 +32,6 @@ jobs:
         with:
           find: "\\|.*$"
           replace: " "
-          include: "tsImplayerCopied.mp3"
+          include: "tsImplayerCopied.m3u"
           regex: true
     
