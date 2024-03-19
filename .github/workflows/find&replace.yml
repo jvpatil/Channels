@@ -2,6 +2,18 @@ name: find&replace strings
 
 on: 
   workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "|Content-Type=application/octet-stream|R{SSM}|"
+          replace: " "
+          include: "**tsImplayerCopied.m3u" # Will match all README.md files in any nested directory
 
 # jobs:
 #   release:
@@ -23,15 +35,4 @@ on:
 #         with:
 #           message: 'fix str'
 
-  - name: My Workflow
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v2
-          - name: Find and Replace
-            uses: jacobtomlinson/gha-find-replace@v3
-            with:
-              find: "|Content-Type=application/octet-stream|R{SSM}|"
-              replace: " "
-              include: "**tsImplayerCopied.m3u" # Will match all README.md files in any nested directory
+ 
