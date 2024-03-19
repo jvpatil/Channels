@@ -1,4 +1,4 @@
-name: Replace string in file
+name: ReplaceString
 
 # on:
 #   push:
@@ -25,6 +25,6 @@ jobs:
       - uses: bluwy/substitute-string-action@v1
         id: sub
         with:
-          _input-file: './tsImplayerCopied.m3u'
+          _input-file: 'tsImplayerCopied.m3u'
            # _format-key: '%%key%%'
           KODIPROP: PODIPROP
