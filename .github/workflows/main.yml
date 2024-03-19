@@ -1,0 +1,65 @@
+
+name: testGenPL_ManualWF
+
+on: 
+  workflow_dispatch:
+        
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                echo "Hello ${{ github.event.inputs.name }}!"
+            - name: checkout repo content
+              uses: actions/checkout@v2  # checkout the repository content to github runner
+                 
+            - name: setup python
+              uses: actions/setup-python@v2
+              with:
+                python-version: '3.x'  # install the python version needed
+
+            - name: install python packages
+              run: |
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+            - name: Set WF BUILD NUMBER
+              run: echo "WF_RUN_COUNTER=${{ github.run_number }}" >> $GITHUB_ENV 
+              
+            - name: execute py script  # run sj-gobierno.py to get the latest data
+              env:
+#                 run: echo "WF_RUN_COUNTER=${{ github.run_number }}" >> $GITHUB_ENV
+                wfRunCounter: ${{ env.WF_RUN_COUNTER }}
+                SID: ${{secrets.SID}}
+                RMN: ${{secrets.RMN}}
+                PASSWORD: ${{secrets.PASSWORD}}
+                AUTH_TYPE: ${{secrets.AUTH_TYPE}}
+              run: python -u code_samples/main.py
+
+            - name: commit files
+              run: |
+                git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                git config --local user.name "github-actions[bot]"
+                git add -A
+                git diff-index --quiet HEAD || git commit -m "updated playlist" -a
+            
+            - name: push changes
+              uses: ad-m/github-push-action@master
+              with:
+                github_token: ${{secrets.GITHUB_TOKEN}}
+                branch: ${{ github.ref }}
+  
+    copy:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+      - name: Copycat
+        uses: andstor/copycat-action@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          src_path: code_samples/tataSkyChannels.m3u
+          dst_path: /.
+          dst_owner: jvpatil
+          dst_repo_name: Channels
+          dst_branch: master
+          src_branch: main
+    
