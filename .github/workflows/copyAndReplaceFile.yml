@@ -42,7 +42,7 @@ jobs:
       - name: replace
         uses: richardrigutins/replace-in-files@v2
         with:
-          files: 'tsImplayerCopied.m3u'
+          files: './tsImplayerCopied.m3u'
           search-text: '|Content-Type=application/octet-stream|R{SSM}|'
           replacement-text: ' '
     
