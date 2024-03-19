@@ -3,22 +3,35 @@ name: find&replace strings
 on: 
   workflow_dispatch:
 
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+# jobs:
+#   release:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
 
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@master
-        with:
-          find: "|Content-Type=application/octet-stream|R{SSM}|"
-          replace: " "
+#       - name: Find and Replace
+#         uses: jacobtomlinson/gha-find-replace@master
+#         with:
+#           find: "|Content-Type=application/octet-stream|R{SSM}|"
+#           replace: " "
 
-      - name: Push changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          message: 'fix str'
+#       - name: Push changes
+#         uses: EndBug/add-and-commit@v7
+#         with:
+#           message: 'fix str'
+
+  - name: My Workflow
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v2
+          - name: Find and Replace
+            uses: jacobtomlinson/gha-find-replace@v3
+            with:
+              find: "|Content-Type=application/octet-stream|R{SSM}|"
+              replace: " "
+              include: "**tsImplayerCopied.m3u" # Will match all README.md files in any nested directory
