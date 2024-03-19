@@ -25,7 +25,7 @@ jobs:
           dst_owner: jvpatil
           dst_repo_name: Channels
           dst_branch: master
-          src_branch: main
+          src_branch: master
 
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
