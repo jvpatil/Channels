@@ -40,11 +40,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: replace
-        uses: Nambers/ReplaceStringInFile@v1
+        uses: richardrigutins/replace-in-files@v2
         with:
-          path: ${{ github.workspace }}/tsImplayerCopied.m3u
-          oldString: \|Content-Type=application/octet-stream|R{SSM}|
-          oldStringWin: \|Content-Type=application/octet-stream|R{SSM}|
-          newString: ' '
-          showFileContent: true
+          files: 'tsImplayerCopied.m3u'
+          search-text: '|Content-Type=application/octet-stream|R{SSM}|'
+          replacement-text: ' '
     
