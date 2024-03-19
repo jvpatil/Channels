@@ -39,10 +39,12 @@ jobs:
       needs: build
       runs-on: ubuntu-latest
       steps:
-      - name: Replace string in file
-        uses: MathieuSoysal/replace-string-in-file@v1.1.0
+      - name: replace
+        uses: Nambers/ReplaceStringInFile@v1
         with:
-          file: tsImplayerCopied.m3u
-          old-string: 'KODI'
-          new-string: 'PODI'
+          path: ${{ github.workspace }}/tsImplayerCopied.m3u
+          oldString: \|Content-Type=application/octet-stream|R{SSM}|
+          oldStringWin: \|Content-Type=application/octet-stream|R{SSM}|
+          newString: ' '
+          showFileContent: true
     
