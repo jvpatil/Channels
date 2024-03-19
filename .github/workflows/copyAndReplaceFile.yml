@@ -42,7 +42,7 @@ jobs:
       - name: Replace string in file
         uses: MathieuSoysal/replace-string-in-file@v1.1.0
         with:
-          file: ./tsImplayerCopied.m3u
-          old-string: '\\|.*$'
+          file: tsImplayerCopied.m3u
+          old-string: '|Content-Type=application/octet-stream|R{SSM}|'
           new-string: ' '
     
