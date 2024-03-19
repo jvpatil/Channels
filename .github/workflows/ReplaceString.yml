@@ -18,3 +18,13 @@ jobs:
           file: tsImplayerCopied.m3u
           old-string: 'KODI'
           new-string: PODI
+
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: bluwy/substitute-string-action@v1
+        id: sub
+        with:
+          _input-file: './tsImplayerCopied.m3u'
+           # _format-key: '%%key%%'
+          KODIPROP: PODIPROP
