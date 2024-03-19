@@ -13,11 +13,10 @@ jobs:
             - name: checkout repo content
               uses: actions/checkout@v2  # checkout the repository content to github runner
 
-            - name: change mode
-              run: git update-index --chmod=+x ./find_and_replace_in_file.sh
-
             - name: execute  script  # run sj-gobierno.py to get the latest data
-              run: ./find_and_replace_in_file.sh
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                run: ./find_and_replace_in_file.sh
 
 
             - name: commit files
