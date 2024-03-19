@@ -30,8 +30,8 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: "\\|.*$"
+          find: "|Content-Type=application/octet-stream|R{SSM}|"
           replace: " "
           include: "tsImplayerCopied.m3u"
-          regex: true
+          regex: false
     
