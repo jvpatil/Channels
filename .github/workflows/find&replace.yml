@@ -11,7 +11,7 @@ jobs:
       - name: Find and Replace
         uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: "|Content-Type=application/octet-stream|R{SSM}|"
+          find: "\\|.*$"
           replace: " "
           include: "**tsImplayerCopied.m3u" # Will match all README.md files in any nested directory
 
