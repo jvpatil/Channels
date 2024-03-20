@@ -5,33 +5,33 @@ on:
   workflow_dispatch:
         
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - run: |
-                echo "Hello ${{ github.event.inputs.name }}!"
-            - name: checkout repo content
-              uses: actions/checkout@v2  # checkout the repository content to github runner
+    # build:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - run: |
+    #             echo "Hello ${{ github.event.inputs.name }}!"
+    #         - name: checkout repo content
+    #           uses: actions/checkout@v2  # checkout the repository content to github runner
 
-            # - name: Use token  # run sj-gobierno.py to get the latest data
-            #   with:
-            #     token: ${{ secrets.GITHUB_TOKEN }}
+    #         # - name: Use token  # run sj-gobierno.py to get the latest data
+    #         #   with:
+    #         #     token: ${{ secrets.GITHUB_TOKEN }}
                 
-            - name: Run Script
-              run: chmod +x find_and_replace_in_file.sh
+    #         - name: Run Script
+    #           run: chmod +x find_and_replace_in_file.sh
 
-            - name: commit files
-              run: |
-                git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                git config --local user.name "github-actions[bot]"
-                git add -A
-                git diff-index --quiet HEAD || git commit -m "updated permission" -a
+    #         - name: commit files
+    #           run: |
+    #             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    #             git config --local user.name "github-actions[bot]"
+    #             git add -A
+    #             git diff-index --quiet HEAD || git commit -m "updated permission" -a
             
-            - name: push changes
-              uses: ad-m/github-push-action@master
-              with:
-                github_token: ${{secrets.GITHUB_TOKEN}}
-                branch: ${{ github.ref }}
+    #         - name: push changes
+    #           uses: ad-m/github-push-action@master
+    #           with:
+    #             github_token: ${{secrets.GITHUB_TOKEN}}
+    #             branch: ${{ github.ref }}
 
     replaceString:
         runs-on: ubuntu-latest
@@ -49,7 +49,7 @@ jobs:
             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
             git add -A
-            git diff-index --quiet HEAD || git commit -m "updated playlist" -a
+            git diff-index --quiet HEAD || git commit -m "removed Contenet-Type from URL" -a
          
          - name: push changes
            uses: ad-m/github-push-action@master
