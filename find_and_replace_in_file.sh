@@ -33,6 +33,6 @@ echo "***************************************************"
 #     done
 # echo " *** All Done! *** Modified files:" $i
 
-sed -ie "s/$searchterm/$replaceterm/ig" tsImplayerCopied.m3u
+sed -E "s/$searchterm/$replaceterm/ig" tsImplayerCopied.m3u > newPlaylist.m3u
 echo " *** All Done! *** Modified files:" 
 
