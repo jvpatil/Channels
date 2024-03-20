@@ -38,7 +38,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:       
           - name: Run replace text Script
-            run: ./find_and_replace_in_file.sh
+            run: find_and_replace_in_file.sh
             
           - name: commit files
             run: |
