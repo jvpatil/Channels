@@ -19,17 +19,19 @@ echo "***************************************************"
 echo "* Search and Replace in Files Version 01-Aug-2012 *"
 echo "***************************************************"
 
-i=0; 
+# i=0; 
 
-  for file in $(grep -l -R $searchterm $startdirectory)
-    do
-      cp $file $file.bak
-      sed -e "s/$searchterm/$replaceterm/ig" $file > tempfile.tmp
-      mv tempfile.tmp $file
+#   for file in $(grep -l -R $searchterm $startdirectory)
+#     do
+#       cp $file $file.bak
+#       sed -e "s/$searchterm/$replaceterm/ig" $file > tempfile.tmp
+#       mv tempfile.tmp $file
 
-    let i++;
+#     let i++;
 
-      echo "Modified: " $file
-    done
+#       echo "Modified: " $file
+#     done
+# echo " *** All Done! *** Modified files:" $i
+sed -e "s/$searchterm/$replaceterm/ig" find_and_replace_in_file.sh
+echo " *** All Done! *** Modified files:" 
 
-echo " *** All Done! *** Modified files:" $i
