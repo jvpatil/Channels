@@ -1,5 +1,5 @@
 
-name: testGenPL_ManualWF
+name: imPlayer_ManualWF
 
 on: 
   workflow_dispatch:
