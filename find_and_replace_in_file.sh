@@ -32,6 +32,7 @@ echo "***************************************************"
 #       echo "Modified: " $file
 #     done
 # echo " *** All Done! *** Modified files:" $i
-sed -e "s/$searchterm/$replaceterm/ig" find_and_replace_in_file.sh
+
+sed -ie "s/$searchterm/$replaceterm/ig" find_and_replace_in_file.sh
 echo " *** All Done! *** Modified files:" 
 
