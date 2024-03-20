@@ -18,23 +18,40 @@ jobs:
             #     token: ${{ secrets.GITHUB_TOKEN }}
                 
             - name: Run Script
-              run: ./find_and_replace_in_file.sh
-              env:
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+              run: chmod +x find_and_replace_in_file.sh
 
             - name: commit files
               run: |
                 git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
                 git config --local user.name "github-actions[bot]"
                 git add -A
-                git diff-index --quiet HEAD || git commit -m "updated playlist" -a
+                git diff-index --quiet HEAD || git commit -m "updated permission" -a
             
             - name: push changes
               uses: ad-m/github-push-action@master
               with:
                 github_token: ${{secrets.GITHUB_TOKEN}}
                 branch: ${{ github.ref }}
+
+    replaceString:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:       
+          - name: Run replace text Script
+            run: ./find_and_replace_in_file.sh
+            
+          - name: commit files
+            run: |
+              git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git config --local user.name "github-actions[bot]"
+              git add -A
+              git diff-index --quiet HEAD || git commit -m "updated playlist" -a
+          
+          - name: push changes
+            uses: ad-m/github-push-action@master
+            with:
+              github_token: ${{secrets.GITHUB_TOKEN}}
+              branch: ${{ github.ref }}
   
    
     
