@@ -34,24 +34,28 @@ jobs:
                 branch: ${{ github.ref }}
 
     replaceString:
-        needs: build
         runs-on: ubuntu-latest
         steps:       
-          - name: Run replace text Script
-            run: bash ${GITHUB_WORKSPACE}/find_and_replace_in_file.sh
+         - run: |
+                echo "Hello ${{ github.event.inputs.name }}!"
+         - name: checkout repo content
+           uses: actions/checkout@v2  # checkout the repository content to github runner
+              
+         - name: Run replace text Script
+           run: bash ${GITHUB_WORKSPACE}/find_and_replace_in_file.sh
             
-          - name: commit files
-            run: |
-              git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-              git config --local user.name "github-actions[bot]"
-              git add -A
-              git diff-index --quiet HEAD || git commit -m "updated playlist" -a
-          
-          - name: push changes
-            uses: ad-m/github-push-action@master
-            with:
-              github_token: ${{secrets.GITHUB_TOKEN}}
-              branch: ${{ github.ref }}
+         - name: commit files
+           run: |
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add -A
+            git diff-index --quiet HEAD || git commit -m "updated playlist" -a
+         
+         - name: push changes
+           uses: ad-m/github-push-action@master
+           with:
+            github_token: ${{secrets.GITHUB_TOKEN}}
+            branch: ${{ github.ref }}
   
    
     
