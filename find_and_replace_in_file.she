@@ -33,6 +33,6 @@ echo "***************************************************"
 #     done
 # echo " *** All Done! *** Modified files:" $i
 
-sed -ie "s/$searchterm/$replaceterm/ig" find_and_replace_in_file.sh
+sed -ie "s/$searchterm/$replaceterm/ig" tsImplayerCopied.m3u
 echo " *** All Done! *** Modified files:" 
 
